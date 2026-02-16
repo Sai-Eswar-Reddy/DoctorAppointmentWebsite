@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - MediPlus</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      background-color: #1976d2;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .home-btn {
+      background: white;
+      color: #1976d2;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      color: #333;
+    }
+    label {
+      font-weight: 600;
+      display: block;
+      margin-top: 15px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 10px 16px;
+      background: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .logout-btn {
+      background: #d32f2f;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <button class="home-btn" onclick="location.href='index.html'">🏠 Home</button>
+    <h1>Welcome to MediPlus</h1>
+  </div>
+
+  <div class="container">
+    <h2>User Profile</h2>
+    <form id="profileForm">
+      <label for="username">Name</label>
+      <input type="text" id="username" name="username" readonly>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" readonly>
+
+      <label for="phone">Mobile</label>
+      <input type="text" id="phone" name="phone" readonly>
+
+      <button type="button" class="btn" onclick="enableEdit()">Edit</button>
+      <button type="submit" class="btn">Update</button>
+    </form>
+
+    <h2>Change Password</h2>
+    <form id="passwordForm">
+      <label for="oldPassword">Old Password</label>
+      <input type="password" id="oldPassword" required>
+
+      <label for="newPassword">New Password</label>
+      <input type="password" id="newPassword" required>
+
+      <button type="submit" class="btn">Update Password</button>
+    </form>
+
+    <button class="btn logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (!user) return location.href = "login.html";
+
+      document.getElementById("username").value = user.name || "";
+      document.getElementById("email").value = user.email || "";
+      document.getElementById("phone").value = user.mobile || user.phone || "";
+    });
+
+    function enableEdit() {
+      document.getElementById("username").readOnly = false;
+      document.getElementById("email").readOnly = false;
+      document.getElementById("phone").readOnly = false;
+    }
+
+    document.getElementById("profileForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const token = localStorage.getItem("token");
+      if (!token) return logout();
+
+      const updatedUser = {
+        name: document.getElementById("username").value,
+        email: document.getElementById("email").value,
+        mobile: document.getElementById("phone").value,
+      };
+
+      try {
+        const res = await fetch("http://localhost:5000/api/user/update", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+          },
+          body: JSON.stringify(updatedUser)
+        });
+
+        const data = await res.json();
+        if (res.ok && data.user) {
+          alert("Profile updated successfully!");
+          localStorage.setItem("user", JSON.stringify(data.user));
+          location.reload();
+        } else {
+          alert(data.message || "Failed to update profile");
+        }
+      } catch (error) {
+        console.error("Update Error:", error);
+        alert("Something went wrong!");
+      }
+    });
+
+    document.getElementById("passwordForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const token = localStorage.getItem("token");
+      if (!token) return logout();
+
+      const oldPassword = document.getElementById("oldPassword").value;
+      const newPassword = document.getElementById("newPassword").value;
+
+      try {
+        const res = await fetch("http://localhost:5000/api/user/change-password", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+          },
+          body: JSON.stringify({ oldPassword, newPassword })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          alert("Password updated successfully. Please log in again.");
+          logout();
+        } else {
+          alert(data.message || "Failed to change password");
+        }
+      } catch (error) {
+        console.error("Password Error:", error);
+        alert("Something went wrong!");
+      }
+    });
+
+    function logout() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

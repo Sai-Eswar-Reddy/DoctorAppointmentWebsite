@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Appointments - MediPlus</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #eef6fb;
+    }
+    .header {
+      background-color: #007bff;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.8rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .home-btn {
+      background-color: white;
+      color: #007bff;
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 700px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .appointment {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      background-color: #f9f9f9;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .appointment:hover {
+      transform: scale(1.02);
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.25);
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .modal-close {
+      float: right;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #aaa;
+    }
+    .modal-close:hover {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <button class="home-btn" onclick="location.href='index.html'">🏡 Home</button>
+    <div>My Appointments</div>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <h2>Your Appointments</h2>
+      <div id="appointments">Loading appointments...</div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="appointmentModal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <h3>Appointment Details</h3>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    function closeModal() {
+      document.getElementById('appointmentModal').style.display = 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        alert('You must be logged in to view your appointments.');
+        return window.location.href = 'login.html';
+      }
+
+      fetch('http://localhost:5000/api/appointments/my-appointments', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then(res => {
+        if (!res.ok) {
+          if (res.status === 403) {
+            alert('Access denied. Please login again.');
+            return window.location.href = 'login.html';
+          } else {
+            throw new Error(`HTTP error! Status: ${res.status}`);
+          }
+        }
+        return res.json();
+      })
+      .then(data => {
+        const container = document.getElementById('appointments');
+        container.innerHTML = '';
+
+        if (!data.length) {
+          container.innerHTML = '<p>No appointments found.</p>';
+          return;
+        }
+
+        data.forEach(appointment => {
+          const item = document.createElement('div');
+          item.className = 'appointment';
+          item.innerHTML = `
+            <h4><strong>Doctor:</strong> ${appointment.doctorName}</h4>
+            <p><strong>Date:</strong> ${appointment.date}</p>
+            <p><strong>Service:</strong> ${appointment.service}</p>
+          `;
+          item.addEventListener('click', () => {
+                document.getElementById('modalContent').innerHTML = `
+      <p><strong>User Name:</strong> ${appointment.name}</p>
+      <p><strong>Mobile:</strong> ${appointment.phone}</p>
+      <p><strong>Email:</strong> ${appointment.email}</p>
+      <p><strong>Appointment ID:</strong> ${appointment.appointmentId}</p>
+      <p><strong>Doctor:</strong> ${appointment.doctorName}</p>
+      <p><strong>Date:</strong> ${appointment.date}</p>
+      <p><strong>Time:</strong> ${appointment.time}</p>
+      <p><strong>Service:</strong> ${appointment.service}</p>
+      <p><strong>Total Amount:</strong> ₹${appointment.totalAmount}</p>
+      <p><strong>Payment Method:</strong> ${appointment.paymentMethod}</p>
+    `;
+
+            document.getElementById('appointmentModal').style.display = 'flex';
+          });
+          container.appendChild(item);
+        });
+      })
+      .catch(err => {
+        console.error('Error fetching appointments:', err);
+        document.getElementById('appointments').innerHTML = '<p>Error loading appointments.</p>';
+      });
+    });
+  </script>
+
+</body>
+</html>

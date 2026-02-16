@@ -1,0 +1,808 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+    <head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name='copyright' content=''>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Mediplus</title>
+        <link rel="icon" href="img/favicon.png">
+		<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/nice-select.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/icofont.css">
+		<link rel="stylesheet" href="css/slicknav.min.css">
+        <link rel="stylesheet" href="css/owl-carousel.css">
+		<link rel="stylesheet" href="css/datepicker.css">
+        <link rel="stylesheet" href="css/animate.min.css">
+        <link rel="stylesheet" href="css/magnific-popup.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/responsive.css">	
+    </head>
+    <body>
+	
+		
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader-outter"></div>
+                <div class="loader-inner"></div>
+
+                <div class="indicator"> 
+                    <svg width="16px" height="12px">
+                        <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                        <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+	
+		<header class="header">
+			<!-- Header Inner -->
+			<div class="header-inner">
+			  <div class="container">
+				<div class="inner">
+				  <div class="row">
+					<div class="col-lg-3 col-md-3 col-12">
+					  <!-- Start Logo -->
+					  <div class="logo">
+						<a href="index.html"><img src="img/logo.png" alt="#"></a>
+					  </div>
+					  <!-- End Logo -->
+					  <div class="mobile-nav"></div>
+					</div>
+					<div class="col-lg-7 col-md-9 col-12">
+					  <!-- Main Menu -->
+					  <div class="main-menu">
+						<nav class="navigation">
+						  <ul class="nav menu">
+							<li class="active"><a href="index.html">Home</a></li>
+							<li><a href="#services-section">Services</a></li>
+							<li><a href="#bookings">Bookings</a></li>
+							<li><a href="blog-single.html">Doctors</a></li>
+							<li><a href="contact.html">Contact Us</a></li>
+		  
+							<!-- Login Button -->
+							<li id="login-nav"><a href="login.html"><i class="fa fa-sign-in"></i> Login</a></li>
+		  
+							<!-- Profile Dropdown -->
+							<li class="dropdown d-none" id="profile-nav" style="position: relative;">
+							  <a href="#" class="dropdown-toggle" onclick="toggleDropdown()" style="display: flex; align-items: center;">
+								<div id="profile-letter"
+								  style="width: 30px; height: 30px; background: #007bff; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+								  U
+								</div>
+							  </a>
+							  <ul id="profile-dropdown"
+								class="dropdown-menu"
+								style="display: none; position: absolute; top: 40px; right: 0; background: white; padding: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); z-index: 999;">
+								<li><a class="dropdown-item" href="dashboard.html">Dashboard</a></li>
+								<li><a class="dropdown-item" href="my-appointments.html">My Appointments</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
+							  </ul>
+							</li>
+						  </ul>
+						</nav>
+					  </div>
+					  <!--/ End Main Menu -->
+					</div>
+					<div class="col-lg-2 col-12">
+					  <div class="get-quote">
+						<a href="appointments.html" class="btn require-login">Book Appointment</a>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </header>
+		<!-- End Header Area -->
+		
+		<!-- Slider Area -->
+		<section class="slider">
+			<div class="hero-slider">
+				<!-- Start Single Slider -->
+				<div class="single-slider" style="background-image:url('img/slider2.jpg')">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-7">
+								<div class="text">
+									<h1>We Provide <span>Medical</span> Services That You Can <span>Trust!</span></h1>
+									<p>Experience medical services you can depend on for your well-being. We are committed to providing trustworthy care you can have confidence in.</p>
+									<div class="button">
+										<a href="appointments.html" class="btn require-login">Get Appointment</a>
+										<a href="learn.html" class="btn primary">Learn More</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End Single Slider -->
+				<!-- Start Single Slider -->
+				<div class="single-slider" style="background-image:url('img/slider.jpg')">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-7">
+								<div class="text">
+									<h1>We Provide <span>Medical</span> Services That You Can <span>Trust!</span></h1>
+									<p>Experience medical services you can depend on for your well-being. We are committed to providing trustworthy care you can have confidence in. </p>
+									<div class="button">
+										<a href="appointments.html" class="btn require-login">Get Appointment</a>
+										<a href="learn.html" class="btn primary">About Us</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Start End Slider -->
+				<!-- Start Single Slider -->
+				<div class="single-slider" style="background-image:url('img/slider3.jpg')">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-7">
+								<div class="text">
+									<h1>We Provide <span>Medical</span> Services That You Can <span>Trust!</span></h1>
+									<p>Experience medical services you can depend on for your well-being. We are committed to providing trustworthy care you can have confidence in.</p>
+									<div class="button">
+										<a href="appointments.html" class="btn require-login">Get Appointment</a>
+										<a href="contact.html" class="btn primary">Conatct Now</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End Single Slider -->
+			</div>
+		</section>
+		<!--/ End Slider Area -->
+		
+		<!-- Start Schedule Area -->
+		<section class="schedule">
+			<div class="container">
+				<div class="schedule-inner">
+					<div class="row">
+						<div class="col-lg-4 col-md-6 col-12 ">
+							<!-- single-schedule -->
+							<div class="single-schedule first">
+								<div class="inner">
+									<div class="icon">
+										<i class="fa fa-ambulance"></i>
+									</div>
+									<div class="single-content">
+										<span></span>
+										<h4>Emergency Cases</h4>
+										<p>Learn about common emergency symptoms such as severe chest pain, difficulty breathing, sudden loss of consciousness, and more.</p>
+										<a href="learn.html">LEARN MORE<i class="fa fa-long-arrow-right"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-12">
+							<!-- single-schedule -->
+							<div class="single-schedule middle">
+								<div class="inner">
+									<div class="icon">
+										<i class="icofont-prescription"></i>
+									</div>
+									<div class="single-content">
+										<span></span>
+										<h4>Doctors Timetable</h4>
+										<p>Please note that this is a general schedule and may be subject to change. For specific appointment availability, please contact our reception desk at 1800-125-784</p>
+										<a href="learn.html">LEARN MORE<i class="fa fa-long-arrow-right"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-12 col-12">
+							<!-- single-schedule -->
+							<div class="single-schedule last">
+								<div class="inner">
+									<div class="icon">
+										<i class="icofont-ui-clock"></i>
+									</div>
+									<div class="single-content">
+										<span></span>
+										<h4>Opening Hours</h4>
+										<ul class="time-sidual">
+											<li class="day">Monday - Friday <span>8.00-20.00</span></li>
+											<li class="day">Saturday <span>9.00-18.30</span></li>
+											<li class="day">Sunday<span>9.00-15.00</span></li>
+										</ul>
+										<a href="learn.html">LEARN MORE<i class="fa fa-long-arrow-right"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--/End Start schedule Area -->
+
+		<!-- Start Feautes -->
+		<section class="Feautes section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="section-title">
+							<h2>We Are Always Ready to Help You & Your Family</h2>
+							<img src="img/section-img.png" alt="#">
+							<p>We're always here for your family's health needs, ready to provide support whenever you require it. Your well-being is our constant commitment.</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4 col-12">
+						<!-- Start Single features -->
+						<div class="single-features">
+							<div class="signle-icon">
+								<i class="icofont icofont-ambulance-cross"></i>
+							</div>
+							<h3>Emergency Help</h3>
+							<p>Immediate medical assistance is available when you need it most.</p>
+						</div>
+						<!-- End Single features -->
+					</div>
+					<div class="col-lg-4 col-12">
+						<!-- Start Single features -->
+						<div class="single-features">
+							<div class="signle-icon">
+								<i class="icofont icofont-medical-sign-alt"></i>
+							</div>
+							<h3>Enriched Pharmacy</h3>
+							<p>Comprehensive care, expert guidance, and your health as our focus.p>
+						</div>
+						<!-- End Single features -->
+					</div>
+					<div class="col-lg-4 col-12">
+						<!-- Start Single features -->
+						<div class="single-features last">
+							<div class="signle-icon">
+								<i class="icofont icofont-stethoscope"></i>
+							</div>
+							<h3>Medical Treatment</h3>
+							<p>Effective and reliable medical treatment options designed to restore and maintain your health.</p>
+						</div>
+						<!-- End Single features -->
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--/ End Feautes -->
+		
+		<!-- Start Fun-facts -->
+		<div id="fun-facts" class="fun-facts section overlay">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-6 col-12">
+						<!-- Start Single Fun -->
+						<div class="single-fun">
+							<i class="icofont icofont-home"></i>
+							<div class="content">
+								<span class="counter">3468</span>
+								<p>Hospital Rooms</p>
+							</div>
+						</div>
+						<!-- End Single Fun -->
+					</div>
+					<div class="col-lg-3 col-md-6 col-12">
+						<!-- Start Single Fun -->
+						<div class="single-fun">
+							<i class="icofont icofont-user-alt-3"></i>
+							<div class="content">
+								<span class="counter">557</span>
+								<p>Specialist Doctors</p>
+							</div>
+						</div>
+						<!-- End Single Fun -->
+					</div>
+					<div class="col-lg-3 col-md-6 col-12">
+						<!-- Start Single Fun -->
+						<div class="single-fun">
+							<i class="icofont-simple-smile"></i>
+							<div class="content">
+								<span class="counter">4379</span>
+								<p>Happy Patients</p>
+							</div>
+						</div>
+						<!-- End Single Fun -->
+					</div>
+					<div class="col-lg-3 col-md-6 col-12">
+						<!-- Start Single Fun -->
+						<div class="single-fun">
+							<i class="icofont icofont-table"></i>
+							<div class="content">
+								<span class="counter">32</span>
+								<p>Years of Experience</p>
+							</div>
+						</div>
+						<!-- End Single Fun -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/ End Fun-facts -->
+		
+		<!-- Start Why choose -->
+		<section class="why-choose section" >
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="section-title">
+							<h2>We Offer Different Services To Improve Your Health</h2>
+							<img src="img/section-img.png" alt="#">
+							<p>Explore our diverse range of medical services designed to enhance your health and well-being.</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-12">
+						<!-- Start Choose Left -->
+						<div class="choose-left">
+							<h3>Who We Are</h3>
+							<p>We are a dedicated healthcare provider serving the Hyderabad community with a commitment to compassionate and comprehensive medical care.</p>
+							<p>Our experienced team strives to improve the health and well-being of individuals and families through trusted services and a patient-centered approach. </p>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list">
+										<li><i class="fa fa-caret-right"></i>Environmental Adaptation </li>
+										<li><i class="fa fa-caret-right"></i>Rehabilitation Therapy</li>
+										<li><i class="fa fa-caret-right"></i>Sensory Integration</li>
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list">
+										<li><i class="fa fa-caret-right"></i>Adult Rehab</li>
+										<li><i class="fa fa-caret-right"></i>
+											Mental Health</li>
+										<li><i class="fa fa-caret-right"></i>
+											Work Therapy</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- End Choose Left -->
+					</div>
+					<div class="col-lg-6 col-12">
+						<!-- Start Choose Rights -->
+						<div class="choose-right">
+							<div class="video-image">
+
+								<a href="https://www.youtube.com/watch?v=RFVXy6CRVR4" class="video video-popup mfp-iframe"><i class="fa fa-play"></i></a>
+							</div>
+						</div>
+						<!-- End Choose Rights -->
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--/ End Why choose -->
+		
+		<!-- Start Call to action -->
+		<section class="call-action overlay" data-stellar-background-ratio="0.5">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-12">
+						<div class="content">
+							<h2>Do you need Emergency Medical Care? Call <a href="tel:+918790126506"> +91 8790126506</a></h2>
+							<p></p>
+							<div class="button">
+								<a href="contact.html" class="btn">Contact Now</a>
+								<a href="#" class="btn second">Learn More<i class="fa fa-long-arrow-right"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--/ End Call to action -->
+		
+		
+		
+		<!-- Start service -->
+		<section class="services section" id="services-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="section-title">
+							<h2>We Offer Different Services To Improve Your Health</h2>
+							<img src="img/section-img.png" alt="#">
+							<p></p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4 col-md-6 col-12">
+						<!-- Start Single Service -->
+						<div class="single-service">
+							<i class="icofont icofont-prescription"></i>
+							<h4><a href="blog-single.html">General Treatment</a></h4>
+							<p>We offer comprehensive general treatment for a wide variety of common illnesses and health concerns.</p>	
+						</div>
+						<!-- End Single Service -->
+					</div>
+					<div class="col-lg-4 col-md-6 col-12">
+						<!-- Start Single Service -->
+						<div class="single-service">
+							<i class="icofont icofont-tooth"></i>
+							<h4><a href="blog-single.html">Teeth Whitening</a></h4>
+							<p>Brighten your smile and boost your confidence with our professional teeth whitening treatments. </p>	
+						</div>
+						<!-- End Single Service -->
+					</div>
+					<div class="col-lg-4 col-md-6 col-12">
+						<!-- Start Single Service -->
+						<div class="single-service">
+							<i class="icofont icofont-heart-alt"></i>
+							<h4><a href="blog-single.html">Heart Surgery</a></h4>
+							<p>Advanced surgical procedures to treat a range of heart conditions and improve cardiac health. </p>	
+						</div>
+						<!-- End Single Service -->
+					</div>
+					<div class="col-lg-4 col-md-6 col-12">
+						<!-- Start Single Service -->
+						<div class="single-service">
+							<i class="icofont icofont-listening"></i>
+							<h4><a href="blog-single.html">Ear Treatment</a></h4>
+							<p>We offer thorough diagnosis and effective treatment for a variety of ear conditions, from infections to hearing.</p>	
+						</div>
+						<!-- End Single Service -->
+					</div>
+					<div class="col-lg-4 col-md-6 col-12">
+						<!-- Start Single Service -->
+						<div class="single-service">
+							<i class="icofont icofont-eye-alt"></i>
+							<h4><a href="blog-single.html">Vision Problems</a></h4>
+							<p>Expert diagnosis and management of various conditions affecting your eyesight and visual health. </p>	
+						</div>
+						<!-- End Single Service -->
+					</div>
+					<div class="col-lg-4 col-md-6 col-12">
+						<!-- Start Single Service -->
+						<div class="single-service">
+							<i class="icofont icofont-blood"></i>
+							<h4><a href="blog-single.html">Blood Transfusion</a></h4>
+							<p>A potentially life-saving procedure involving the infusion of blood or its components to restore health.</p>	
+						</div>
+						<!-- End Single Service -->
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--/ End service -->
+		
+		<!-- Pricing Table -->
+		<section class="pricing-table section" id="bookings">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="section-title">
+							<h2>We Provide You The Best Treatment In Resonable Price</h2>
+							<img src="img/section-img.png" alt="#">
+							<p></p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<!-- Single Table -->
+					<div class="col-lg-4 col-md-12 col-12">
+						<div class="single-table">
+							<!-- Table Head -->
+							<div class="table-head">
+								<div class="icon">
+									<i class="icofont icofont-ui-cut"></i>
+								</div>
+								<h4 class="title">Plastic Suggery</h4>
+								<div class="price">
+									<p class="amount">2999<span>/ Per Visit</span></p>
+								</div>	
+							</div>
+
+							<div class="table-bottom">
+								<a class="btn require-login" href="appointments.html">Book Now</a>
+							</div>
+							<!-- Table Bottom -->
+						</div>
+					</div>
+					<!-- End Single Table-->
+					<!-- Single Table -->
+					<div class="col-lg-4 col-md-12 col-12">
+						<div class="single-table">
+							<!-- Table Head -->
+							<div class="table-head">
+								<div class="icon">
+									<i class="icofont icofont-tooth"></i>
+								</div>
+								<h4 class="title">Teeth Whitening</h4>
+								<div class="price">
+									<p class="amount">1999<span>/ Per Visit</span></p>
+								</div>	
+							</div>
+						
+							<div class="table-bottom">
+								<a class="btn require-login" href="appointments.html">Book Now</a>
+							</div>
+							<!-- Table Bottom -->
+						</div>
+					</div>
+					<!-- End Single Table-->
+					<!-- Single Table -->
+					<div class="col-lg-4 col-md-12 col-12">
+						<div class="single-table">
+							<!-- Table Head -->
+							<div class="table-head">
+								<div class="icon">
+									<i class="icofont-heart-beat"></i>
+								</div>
+								<h4 class="title">Heart Suggery</h4>
+								<div class="price">
+									<p class="amount">3999<span>/ Per Visit</span></p>
+								</div>	
+							</div>
+						
+							<div class="table-bottom">
+								<a class="btn require-login" href="appointments.html">Book Now</a>
+							</div>
+							<!-- Table Bottom -->
+						</div>
+					</div>
+					<!-- End Single Table-->
+
+					<!-- Single Table -->
+					<div class="col-lg-4 col-md-12 col-12">
+						<div class="single-table">
+							<!-- Table Head -->
+							<div class="table-head">
+								<div class="icon">
+									<img src="img/ENT.png" alt="" style="height: 100px; width: 100px;">
+								</div>
+								<h4 class="title">ENT</h4>
+								<div class="price">
+									<p class="amount">1499<span>/ Per Visit</span></p>
+								</div>	
+							</div>
+							
+							<div class="table-bottom">
+								<a class="btn require-login" href="appointments.html">Book Now</a>
+							</div>
+							<!-- Table Bottom -->
+						</div>
+					</div>
+					<!-- End Single Table-->
+
+					<!-- Single Table -->
+					<div class="col-lg-4 col-md-12 col-12">
+						<div class="single-table">
+							<!-- Table Head -->
+							<div class="table-head">
+								<div class="icon">
+									<img src="img/Eye.png" alt="" style="height: 100px; width: 100px;">
+								</div>
+								<h4 class="title">Eye Care</h4>
+								<div class="price">
+									<p class="amount">2499<span>/ Per Visit</span></p>
+								</div>	
+							</div>
+							
+							<div class="table-bottom">
+								<a class="btn require-login" href="appointments.html">Book Now</a>
+							</div>
+							<!-- Table Bottom -->
+						</div>
+					</div>
+					<!-- End Single Table-->
+
+					<!-- Single Table -->
+					<div class="col-lg-4 col-md-12 col-12">
+						<div class="single-table">
+							<!-- Table Head -->
+							<div class="table-head">
+								<div class="icon">
+									<img src="img/Blood.png" alt="" style="height: 100px; width: 100px;">
+								</div>
+								<h4 class="title">Blood Transfussion</h4>
+								<div class="price">
+									<p class="amount">3499<span>/ Per Visit</span></p>
+								</div>	
+							</div>
+							
+							<div class="table-bottom">
+								<a class="btn require-login" href="appointments.html">Book Now</a>
+							</div>
+							<!-- Table Bottom -->
+						</div>
+					</div>
+					<!-- End Single Table-->
+				</div>	
+			</div>	
+		</section>	
+		<!--/ End Pricing Table -->		
+		<!-- Start clients -->
+		<div class="clients overlay">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-12">
+						<div class="owl-carousel clients-slider">
+							<div class="single-clients">
+								<img src="img/client1.png" alt="#">
+							</div>
+							<div class="single-clients">
+								<img src="img/client2.png" alt="#">
+							</div>
+							<div class="single-clients">
+								<img src="img/client3.png" alt="#">
+							</div>
+							<div class="single-clients">
+								<img src="img/client4.png" alt="#">
+							</div>
+							<div class="single-clients">
+								<img src="img/client5.png" alt="#">
+							</div>
+							<div class="single-clients">
+								<img src="img/client1.png" alt="#">
+							</div>
+							<div class="single-clients">
+								<img src="img/client2.png" alt="#">
+							</div>
+							<div class="single-clients">
+								<img src="img/client3.png" alt="#">
+							</div>
+							<div class="single-clients">
+								<img src="img/client4.png" alt="#">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/Ens clients -->
+		
+
+		
+		
+		<!-- Footer Area -->
+		<footer id="footer" class="footer ">
+			<!-- Footer Top -->
+			<div class="footer-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-3 col-md-6 col-12">
+							<div class="single-footer">
+								<h2>About Us</h2>
+								<p>These platforms typically provide information about different hospitals, departments, available services (like consultations, admissions, tests, and procedures), and sometimes even real-time availability of beds or appointment slots.</p>
+								<!-- Social -->
+								<ul class="social">
+									<li><a href="#"><i class="icofont-facebook"></i></a></li>
+									<li><a href="#"><i class="icofont-google-plus"></i></a></li>
+									<li><a href="#"><i class="icofont-twitter"></i></a></li>
+									<li><a href="#"><i class="icofont-vimeo"></i></a></li>
+									<li><a href="#"><i class="icofont-pinterest"></i></a></li>
+								</ul>
+								<!-- End Social -->
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 col-12">
+							<div class="single-footer f-link">
+								
+								<div class="row">
+									<div class="col-lg-6 col-md-6 col-12">
+										
+									</div>
+									<div class="col-lg-6 col-md-6 col-12">
+										
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 col-12">
+							<div class="single-footer">
+								<h2>Open Hours</h2>
+								<p></p>
+								<ul class="time-sidual">
+									<li class="day">Monday - Friday <span>8.00-20.00</span></li>
+									<li class="day">Saturday <span>9.00-18.30</span></li>
+									<li class="day">Sunday<span>9.00-15.00</span></li>
+								</ul>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<!--/ End Footer Top -->
+		</footer>
+		<!--/ End Footer Area -->
+		
+        <script src="js/jquery.min.js"></script>
+		<script src="js/jquery-migrate-3.0.0.js"></script>
+		<script src="js/jquery-ui.min.js"></script>
+        <script src="js/easing.js"></script>
+		<script src="js/colors.js"></script>
+		<script src="js/popper.min.js"></script>
+		<script src="js/bootstrap-datepicker.js"></script>
+        <script src="js/jquery.nav.js"></script>
+		<script src="js/slicknav.min.js"></script>
+        <script src="js/jquery.scrollUp.min.js"></script>
+		<script src="js/niceselect.js"></script>
+		<script src="js/tilt.jquery.min.js"></script>
+        <script src="js/owl-carousel.js"></script>
+		<script src="js/jquery.counterup.min.js"></script>
+		<script src="js/steller.js"></script>
+		<script src="js/wow.min.js"></script>
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/main.js"></script>
+    <script>
+			// Show/hide login and profile menu based on token
+			document.addEventListener("DOMContentLoaded", () => {
+			  const isLoggedIn = localStorage.getItem("token") !== null;
+			  document.getElementById("login-nav").style.display = isLoggedIn ? "none" : "inline-block";
+			  document.getElementById("profile-nav").classList.toggle("d-none", !isLoggedIn);
+			});
+			// Toggle dropdown visibility
+			function toggleDropdown() {
+			  const dropdown = document.getElementById("profile-dropdown");
+			  dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+			}
+			// Logout logic
+			function logout() {
+			  localStorage.removeItem("token");
+			  window.location.href = "index.html";
+			}
+		  </script>
+<script>
+	function toggleDropdown() {
+	  const dropdown = document.getElementById('profile-dropdown');
+	  dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+	}
+	function logout() {
+	  localStorage.removeItem('token');
+	  localStorage.removeItem('user');
+	  window.location.href = 'index.html';
+	}
+	window.addEventListener('DOMContentLoaded', () => {
+	  const user = JSON.parse(localStorage.getItem('user'));
+	  const loginNav = document.getElementById('login-nav');
+	  const profileNav = document.getElementById('profile-nav');
+	  const profileLetter = document.getElementById('profile-letter');
+	  if (user && user.name) {
+		loginNav.classList.add('d-none');
+		profileNav.classList.remove('d-none');
+		profileLetter.textContent = user.name.charAt(0).toUpperCase();
+	  } else {
+		loginNav.classList.remove('d-none');
+		profileNav.classList.add('d-none');
+	  }
+	});
+  </script>
+
+<script>
+	// Utility function to check login
+	function isLoggedIn() {
+	  const token = localStorage.getItem('token');
+	  return !!token;
+	}
+	// Attach click listeners to protected buttons
+	document.addEventListener("DOMContentLoaded", function () {
+	  const protectedButtons = document.querySelectorAll(".require-login");
+	  protectedButtons.forEach(button => {
+		button.addEventListener("click", function (e) {
+		  if (!isLoggedIn()) {
+			e.preventDefault();
+			window.location.href = "login.html";
+		  }
+		});
+	  });
+	});
+  </script>
+    </body>
+</html>

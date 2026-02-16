@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - MediPlus</title>
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f8fa;
+      padding-top: 50px;
+      background: #f0f2f5;
+      font-family: Arial, sans-serif;
+      background-image: url(img/log.webp);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    
+    .login-container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+    }
+    .btn-secondary {
+      background-color: #6c757d;
+      border: none;
+    }
+    .signup-link {
+      text-align: center;
+    }
+    .back-home {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-page section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3 login-container">
+          <h2 class="mb-3 text-center">Login</h2>
+          <form class="form" id="loginForm">
+            <div class="form-group">
+              <label for="loginEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="loginEmail" name="email" placeholder="Enter your email" required />
+            </div>
+            <div class="form-group">
+              <label for="loginPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Enter your password" required />
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Forgot Password?</a>
+            </div>
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+            <p class="mt-3 signup-link">Don't have an account? <a href="signup.html">Sign up</a></p>
+          </form>
+          <div class="mt-4 back-home">
+            <a href="index.html" class="btn btn-secondary">Back to Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Forgot Password Modal -->
+  <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content p-3">
+        <div class="modal-header">
+          <h5 class="modal-title" id="forgotPasswordLabel">Reset Password</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="resetPasswordForm">
+            <div class="mb-3">
+              <label for="resetEmail" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="resetEmail" required />
+            </div>
+            <div class="mb-3">
+              <label for="newPassword" class="form-label">New Password</label>
+              <input type="password" class="form-control" id="newPassword" required />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Reset Password</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Scripts -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Login Logic
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      try {
+        const res = await fetch('http://localhost:5000/api/user/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        alert(data.message);
+        if (res.ok) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+          window.location.href = 'index.html'; // 👈 Redirect to homepage
+        }
+      } catch (err) {
+        alert('Error logging in. Please try again later.');
+      }
+    });
+  
+    // Forgot Password Logic
+    document.getElementById('resetPasswordForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('resetEmail').value;
+      const password = document.getElementById('newPassword').value;
+      try {
+        const res = await fetch('http://localhost:5000/api/user/reset-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        alert(data.message);
+        if (res.ok) {
+          const modal = bootstrap.Modal.getInstance(document.getElementById('forgotPasswordModal'));
+          modal.hide();
+        }
+      } catch (err) {
+        alert('Error resetting password. Please try again later.');
+      }
+    });
+  </script>
+  
+</body>
+</html>
