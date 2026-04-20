@@ -100,13 +100,19 @@
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script>
+
+    const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://doctorappointmentwebsite-1.onrender.com";
+
     // Login Logic
     document.getElementById('loginForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       const email = document.getElementById('loginEmail').value;
       const password = document.getElementById('loginPassword').value;
       try {
-        const res = await fetch('http://localhost:5000/api/user/login', {
+        const res = await fetch(`${BASE_URL}/api/user/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password })
@@ -129,7 +135,7 @@
       const email = document.getElementById('resetEmail').value;
       const password = document.getElementById('newPassword').value;
       try {
-        const res = await fetch('http://localhost:5000/api/user/reset-password', {
+        const res = await fetch(`${BASE_URL}/api/user/reset-password`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password })

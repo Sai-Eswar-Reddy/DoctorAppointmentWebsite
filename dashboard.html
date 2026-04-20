@@ -103,6 +103,12 @@
   </div>
 
   <script>
+    
+    const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://doctorappointmentwebsite-1.onrender.com";
+    
     document.addEventListener("DOMContentLoaded", () => {
       const user = JSON.parse(localStorage.getItem("user"));
       if (!user) return location.href = "login.html";
@@ -130,7 +136,7 @@
       };
 
       try {
-        const res = await fetch("http://localhost:5000/api/user/update", {
+        const res = await fetch(`${BASE_URL}/api/user/update`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -162,7 +168,7 @@
       const newPassword = document.getElementById("newPassword").value;
 
       try {
-        const res = await fetch("http://localhost:5000/api/user/change-password", {
+        const res = await fetch(`${BASE_URL}/api/user/change-password`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

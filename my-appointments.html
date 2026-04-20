@@ -117,6 +117,13 @@
   </div>
 
   <script>
+
+    const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://doctorappointmentwebsite-1.onrender.com";
+
+
     function closeModal() {
       document.getElementById('appointmentModal').style.display = 'none';
     }
@@ -129,7 +136,7 @@
         return window.location.href = 'login.html';
       }
 
-      fetch('http://localhost:5000/api/appointments/my-appointments', {
+      fetch(`${BASE_URL}/api/appointments/my-appointments`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

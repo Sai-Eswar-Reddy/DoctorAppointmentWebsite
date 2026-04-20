@@ -96,6 +96,13 @@
 </div>
 
 <script>
+
+  const BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://doctorappointmentwebsite-1.onrender.com";
+
+
   document.getElementById('signupForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const name = document.getElementById('name').value.trim();
@@ -104,7 +111,7 @@
     const password = document.getElementById('password').value.trim();
 
     try {
-      const res = await fetch('http://localhost:5000/api/user/signup', {
+      const res = await fetch(`${BASE_URL}/api/user/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, mobile, password })
