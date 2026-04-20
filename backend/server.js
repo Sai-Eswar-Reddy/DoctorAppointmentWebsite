@@ -13,23 +13,32 @@ const app = express();
 // ✅ Connect to MongoDB
 connectDB();
 
-// ✅ Allowed Origins (Frontend + Local + Render)
+// ✅ Allowed Origins
 const allowedOrigins = [
   'http://localhost:5500',
   'http://127.0.0.1:5500',
   'https://saieswarreddyg-doctorappointment.netlify.app',
-  
 ];
 
-// ✅ CORS Configuration
+// ✅ CORS Configuration (FINAL)
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      console.log("❌ Blocked by CORS:", origin);
-      callback(new Error('Not allowed by CORS'));
+
+    // Allow requests with no origin (Postman, mobile apps)
+    if (!origin) return callback(null, true);
+
+    // Allow exact matches
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
     }
+
+    // Allow all Netlify deployments (preview + production)
+    if (origin.endsWith('.netlify.app')) {
+      return callback(null, true);
+    }
+
+    console.log("❌ Blocked by CORS:", origin);
+    return callback(new Error('Not allowed by CORS'));
   },
   credentials: true
 }));
@@ -38,27 +47,27 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-// ✅ API Routes
+// ✅ Routes
 app.use('/api/user', userRoutes);
 app.use('/api/appointments', appointmentRoutes);
 
-// ✅ Health Check Route
+// ✅ Health check
 app.get('/', (req, res) => {
   res.send('✅ API is running...');
 });
 
-// ❌ Handle 404 Errors
-app.use((req, res, next) => {
+// ❌ 404 handler
+app.use((req, res) => {
   res.status(404).send('❌ Route not found');
 });
 
-// ❌ Global Error Handler (VERY IMPORTANT)
+// ❌ Global error handler
 app.use((err, req, res, next) => {
   console.error("🔥 Error:", err.stack);
   res.status(500).send('❌ Internal Server Error');
 });
 
-// ✅ Start Server (Render-compatible)
+// ✅ Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
