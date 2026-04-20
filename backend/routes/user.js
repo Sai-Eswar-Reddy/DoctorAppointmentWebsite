@@ -1,5 +1,5 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs'); // ✅ FIXED
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const router = express.Router();
@@ -13,7 +13,7 @@ const verifyToken = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = { id: decoded.userId }; // 🟢 Consistent with authMiddleware.js
+    req.user = { id: decoded.userId };
     next();
   } catch (err) {
     return res.status(403).json({ message: 'Invalid token' });
@@ -23,7 +23,6 @@ const verifyToken = (req, res, next) => {
 // ✅ Signup Route
 router.post('/signup', async (req, res) => {
   const { name, email, mobile, password } = req.body;
-  console.log('➡️ Signup attempt:', { name, email, mobile });
 
   if (!name || !email || !mobile || !password) {
     return res.status(400).json({ message: 'All fields are required' });
@@ -32,7 +31,6 @@ router.post('/signup', async (req, res) => {
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      console.warn('⚠️ User already exists:', email);
       return res.status(400).json({ message: 'User already exists' });
     }
 
@@ -40,10 +38,9 @@ router.post('/signup', async (req, res) => {
     const newUser = new User({ name, email, mobile, password: hashedPassword });
     await newUser.save();
 
-    console.log('✅ User registered:', email);
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
-    console.error('❌ Signup error:', error.message);
+    console.error('Signup error:', error.message);
     res.status(500).json({ message: 'Server error. Try again later.' });
   }
 });
@@ -51,7 +48,6 @@ router.post('/signup', async (req, res) => {
 // ✅ Login Route
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
-  console.log('➡️ Login attempt:', email);
 
   if (!email || !password) {
     return res.status(400).json({ message: 'Email and password required' });
@@ -68,9 +64,11 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
-    });
+    const token = jwt.sign(
+      { userId: user._id },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
 
     res.status(200).json({
       token,
@@ -78,7 +76,7 @@ router.post('/login', async (req, res) => {
       message: 'Login successful'
     });
   } catch (error) {
-    console.error('❌ Login error:', error.message);
+    console.error('Login error:', error.message);
     res.status(500).json({ message: 'Server error. Try again later.' });
   }
 });
@@ -86,6 +84,7 @@ router.post('/login', async (req, res) => {
 // ✅ Reset Password
 router.post('/reset-password', async (req, res) => {
   const { email, password } = req.body;
+
   if (!email || !password) {
     return res.status(400).json({ message: 'Email and new password required' });
   }
@@ -100,7 +99,7 @@ router.post('/reset-password', async (req, res) => {
 
     res.status(200).json({ message: 'Password reset successful' });
   } catch (error) {
-    console.error('❌ Reset error:', error.message);
+    console.error('Reset error:', error.message);
     res.status(500).json({ message: 'Server error. Try again later.' });
   }
 });
@@ -108,6 +107,7 @@ router.post('/reset-password', async (req, res) => {
 // ✅ Update User Details
 router.put('/update', verifyToken, async (req, res) => {
   const { name, email, mobile } = req.body;
+
   try {
     const user = await User.findById(req.user.id);
     if (!user) return res.status(404).json({ message: 'User not found' });
@@ -127,12 +127,15 @@ router.put('/update', verifyToken, async (req, res) => {
 // ✅ Change Password
 router.put('/change-password', verifyToken, async (req, res) => {
   const { oldPassword, newPassword } = req.body;
+
   try {
     const user = await User.findById(req.user.id);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
     const isMatch = await bcrypt.compare(oldPassword, user.password);
-    if (!isMatch) return res.status(400).json({ message: 'Old password is incorrect' });
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Old password is incorrect' });
+    }
 
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     user.password = hashedPassword;
